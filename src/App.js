@@ -75,6 +75,7 @@ function App() {
         artist={artist_name}
         onSearch={handleSearch}
         onLoved={handleLoved}
+        loved={loved}
       />
       <ImageCard
         data={artist_name ? filter : fav ? loved : newData}
@@ -86,7 +87,7 @@ function App() {
   );
 }
 
-function NavigationBar({ onSearch, artist, onLoved }) {
+function NavigationBar({ onSearch, artist, onLoved, loved }) {
   return (
     <header className="bg-red-500 text-white p-4 sticky top-0 w-full z-50">
       <div className="flex justify-around items-center mx-auto">
@@ -109,7 +110,14 @@ function NavigationBar({ onSearch, artist, onLoved }) {
             Home
           </a>
           <a onClick={onLoved} className="text-sm font-semibold md:text-base">
-            Loved
+            Loved{" "}
+            <span
+              className={` ${
+                loved.length > 0 ? "animate-pulse" : ""
+              } relative inline-flex items-center justify-center rounded-full h-5 w-5 bg-rose-400 text-xs`}
+            >
+              {loved.length}
+            </span>
           </a>
           <a href="#" className="text-sm font-semibold md:text-base">
             About-Us
