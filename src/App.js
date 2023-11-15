@@ -4,6 +4,9 @@ import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 function App() {
   const [data, setData] = useState([]);
 
@@ -85,7 +88,7 @@ function App() {
 
 function NavigationBar({ onSearch, artist, onLoved }) {
   return (
-    <header className="bg-red-500 text-white p-4 sticky top-0 w-full">
+    <header className="bg-red-500 text-white p-4 sticky top-0 w-full z-50">
       <div className="flex justify-around items-center mx-auto">
         <div className="w-7 md:w-10">
           <img
@@ -162,11 +165,12 @@ function ImageCard({ data, setNewData, newData }) {
             {item.artist_name}
           </a>
           <div className="">
-            <img
-              className="md:w-80 md:h-96 sm:h-80 sm:w-80 object-cover"
-              loading="lazy"
+            <LazyLoadImage
+              threshold={100}
+              effect="blur"
               src={item.url}
               alt="images"
+              className="md:w-80 md:h-96 sm:h-80 sm:w-80 object-cover"
             />
           </div>
 
